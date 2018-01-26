@@ -24,8 +24,20 @@ gulp.task('html', () => {
 		}));
 });
 
+gulp.task('css', () => {
+	gulp.src(config.basePath.source + '*.less')
+		.pipe(plugins.plumber())
+		.pipe(plugins.changed(config.basePath.build))
+		.pipe(plugins.less())
+		.pipe(gulp.dest(config.basePath.build))
+		.pipe(reload({
+			stream: true
+		}));
+});
+
 gulp.task('watch', () => {
 	gulp.watch(config.basePath.source + '*.html', ['html']);
+	gulp.watch(config.basePath.source + '*.less', ['css']);
 });
 
 gulp.task('default', ['watch']);

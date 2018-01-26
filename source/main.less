@@ -1,0 +1,36 @@
+.color{@black:rgb(0,0,0);@white:rgb(255,255,255);@red:rgb(255,0,0);@blue:rgb(0,0,255);@green:rgb(0,255,0);@font_color:lighten(@black,30%);@title_color:darken(spin(@blue,-30%),20%);}
+.color();
+
+.base(){.group:after{content:".";display:block;height:0;clear:both;visibility:hidden;}*+html .group{display:inline-block;}* html .group{height:1%;}@font:{color:@font_color;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-size:14px;};@big_font:{font-size:16px;};@title:{display:block;font-weight:bold;padding:1vw;color:@title_color;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-size:2vw;};@title_line:{border-bottom:1px solid @title_color;};}
+.base();
+
+.fn(){
+	.set_margin(...){margin:@arguments;}
+	.set_padding(...){padding:@arguments;}
+	.set_shadow(@x : 0;
+	@y             : 5px;
+	@blur          : 10px;
+	@color:lighten(@black,40%)){box-shadow:@x @y @blur @color;}
+	.set_border_radius(@all:0){border-radius:@all @all @all @all;}
+	.set_border_radius(@l;@r){border-radius:@l @r @l @r;}
+	.set_border_radius(@r;@br;@bl){border-radius:0 @r @br @bl;}
+	.set_border_radius(@l;@r;@br;@bl){border-radius:@l @r @br @bl;}
+}
+.fn();
+
+.init(){html,body{width:100%;margin:0;padding:0;background-color:@white;@font();}h1,h2,h3,h4,h5,div,form,p,ul,dl,li,dt,dd{margin:0;padding:0;list-style:none;}}
+.init();
+
+h1{text-align:center;@title();@title_line();}
+p{margin-bottom:1.6em;padding:0 2vw;}
+#box{
+	.set_margin(0 0 0 2vw);
+	.set_shadow();
+	.set_border_radius(10px;20px;30px;40px);
+	width  : 50vw;
+	height:50vw;
+	border : 1px solid @black;
+	overflow:hidden;
+	strong{@title();@title_line();margin-bottom:1vw;}
+	p{.set_margin(0 0 1vw 0);@big_font();}
+}
